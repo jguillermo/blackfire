@@ -1,0 +1,22 @@
+default:
+    suites:
+        default:
+            contexts:
+                - App\Tests\Behat\DemoContext
+                - Behat\MinkExtension\Context\MinkContext
+    extensions:
+        FriendsOfBehat\SymfonyExtension:
+            kernel:
+                class: App\Kernel
+                environment: dev
+                debug: ~
+            bootstrap: config/bootstrap.php
+        Behatch\Extension: ~
+        Blackfire\Bridge\Behat\BlackfireExtension:
+            blackfire_environment: 'demotest'
+            build_name: 'BDD test with Behat'
+        Behat\MinkExtension:
+            base_url: 'https://localhost:8080'
+            sessions:
+                default:
+                    blackfire: ~

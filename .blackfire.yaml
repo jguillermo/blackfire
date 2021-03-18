@@ -1,0 +1,14 @@
+tests:
+  "Pages should be fast enough":
+    path: "/.*" # run the assertions for all HTTP requests
+    assertions:
+      - "main.wall_time < 15ms" # wall clock time is less than 100ms
+      - 'main.peak_memory < 10mb'
+      - 'main.network_out < 10kb'
+      
+  "Memory evolution":
+    path: "/.*"
+    assertions:
+      - percent(main.memory) < 10%
+      - diff(main.memory) < 300kb
+      - "percent(main.wall_time) < 1%"  # time does not increase by more than 10%

@@ -1,0 +1,25 @@
+version: '3'
+services:
+  symfony-app:
+    build:
+      context: .
+      args:
+        UID: $U_ID
+    container_name: symfony-app
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/appdata/www
+
+    command: [ "symfony", "serve", "--port=8080", "--no-tls" ]
+
+
+  blackfire:
+    image: blackfire/blackfire
+    environment:
+      BLACKFIRE_LOG_LEVEL: 4
+      BLACKFIRE_SERVER_ID: 79a5ee03-001c-4593-8b4e-68cd550abe6b
+      BLACKFIRE_SERVER_TOKEN: 2c58909fa0506a7a18d094fee9ea5dcc136faf8fc1f633744f4a8641a66e4c2b
+      BLACKFIRE_CLIENT_ID: 70a407fe-906c-4ba5-a700-4283b46213d8
+      BLACKFIRE_CLIENT_TOKEN: 720f22b54909a95c905703ada02c94b4f129b1b46912809986285de0da34e1f3
+      BLACKFIRE_ENVIRONMENT: UNIFIED
